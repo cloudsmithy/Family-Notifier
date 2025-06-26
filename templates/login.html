@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">登录</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">登录</button>
+                    </form>
+                    <p class="mt-3 text-center">
+                        还没有账户？ <a href="{{ url_for('register') }}">在这里注册</a>
+                    </p>
+                    {% if oidc_enabled %}
+                    <hr>
+                    <div class="text-center">
+                        <p>或者</p>
+                        <a href="{{ url_for('oidc_login') }}" class="btn btn-secondary">
+                            <!-- 在这里可以放 OIDC 提供商的 Logo -->
+                            <span class="mr-2"></span> 使用 OIDC 登录
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

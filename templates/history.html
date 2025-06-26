@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>历史记录</h2>
+        <form action="{{ url_for('delete_history') }}" method="POST" onsubmit="return confirm('您确定要删除所有完成记录吗？此操作无法撤销。');">
+            <button type="submit" class="btn btn-danger">删除全部记录</button>
+        </form>
+    </div>
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item">
+                <h5>{{ task.title }}</h5>
+                <p><small>由 {{ task.assigner }} 指派给 {{ task.assignee }} 于 {{ task.created_at.strftime('%Y-%m-%d') }}。完成于 {{ task.completed_at.strftime('%Y-%m-%d') }}。</small></p>
+            </li>
+        {% else %}
+            <li class="list-group-item">还没有已完成的任务。</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

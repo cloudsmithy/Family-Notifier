@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ current_user.username }}的任务</h2>
+            <ul class="list-group">
+                {% for task in tasks %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5>{{ task.title }}</h5>
+                            <small>由 {{ task.assigner }} 在 {{ task.created_at.strftime('%Y-%m-%d %H:%M:%S') }} 指派</small>
+                        </div>
+                        <div>
+                            <a href="{{ url_for('complete_task', task_id=task.id) }}" class="btn btn-success btn-sm">完成</a>
+                            <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn btn-danger btn-sm">删除</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="list-group-item">没有找到任务。</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 分派任务按钮 -->
+<button id="addTaskBtn" class="add-task-btn">+</button>
+
+<!-- 弹窗 -->
+<div id="taskModal" class="modal">
+  <!-- 弹窗内容 -->
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>分派任务</h2>
+    <form method="POST" action="{{ url_for('add_task') }}">
+        <div class="form-group">
+            <label for="title">任务标题</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="assignee">指派给</label>
+            <select class="form-control" id="assignee" name="assignee">
+                {% for user in users %}
+                    <option value="{{ user.username }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">分派</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// 获取弹窗
+var modal = document.getElementById("taskModal");
+
+// 获取打开弹窗的按钮
+var btn = document.getElementById("addTaskBtn");
+
+// 获取关闭弹窗的 <span> 元素
+var span = document.getElementsByClassName("close-btn")[0];
+
+// 点击按钮时打开弹窗
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// 点击 <span> (x) 关闭弹窗
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// 点击弹窗外部区域关闭弹窗
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+{% endblock %}

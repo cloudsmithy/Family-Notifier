@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./instance:/home/appuser/app/instance
+    environment:
+      # --- Flask Secret Key ---
+      # IMPORTANT: Change this in a production environment!
+      - FLASK_SECRET_KEY=a-very-secret-key-that-you-should-change
+
+      # --- OIDC Configuration ---
+      # Replace with your actual OIDC provider details
+      - LAZYCAT_AUTH_OIDC_CLIENT_ID=${LAZYCAT_AUTH_OIDC_CLIENT_ID}
+      - LAZYCAT_AUTH_OIDC_CLIENT_SECRET=${LAZYCAT_AUTH_OIDC_CLIENT_SECRET}
+      - LAZYCAT_AUTH_OIDC_AUTH_URI=${LAZYCAT_AUTH_OIDC_AUTH_URI}
+      - LAZYCAT_AUTH_OIDC_TOKEN_URI=${LAZYCAT_AUTH_OIDC_TOKEN_URI}
+      - LAZYCAT_AUTH_OIDC_USERINFO_URI=${LAZYCAT_AUTH_OIDC_USERINFO_URI}
+      - OIDC_JWKS_URI=${OIDC_JWKS_URI}
+      - OIDC_REDIRECT_URI=${OIDC_REDIRECT_URI}
+      - LAZYCAT_BOX_DOMAIN=${LAZYCAT_BOX_DOMAIN}
+      - LAZYCAT_APP_DOMAIN=${LAZYCAT_APP_DOMAIN}
+
+volumes:
+  db_data:
