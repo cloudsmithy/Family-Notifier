@@ -7,7 +7,7 @@ on:
       - master
     # 如果只想要 master 而不要 tags，就把下面两行删掉
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build-and-push:
@@ -49,5 +49,4 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            cloudsmithy/Family-Notifier:${{ env.TAG }}
             cloudsmithy/Family-Notifier:latest
