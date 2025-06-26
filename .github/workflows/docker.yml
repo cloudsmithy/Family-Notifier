@@ -49,4 +49,4 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            cloudsmithy/Family-Notifier:latest
+            cloudsmithy/family-notifier:latest
