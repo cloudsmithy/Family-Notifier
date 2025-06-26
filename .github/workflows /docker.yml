@@ -1,8 +1,13 @@
 name: Build and Push Docker Image
 
 on:
-  push: # ← 去掉 tags 过滤器
-    branches: [master] # 想限定就取消注释
+  push:
+    # 同时响应 push 到 master 分支 **和任何 tag**
+    branches:
+      - master
+    # 如果只想要 master 而不要 tags，就把下面两行删掉
+    tags:
+      - '*'
 
 jobs:
   build-and-push:
