@@ -44,5 +44,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            cloudsmithy/flask-demo:${{ env.TAG }}
-            cloudsmithy/flask-demo:latest
+            cloudsmithy/Family-Notifier:${{ env.TAG }}
+            cloudsmithy/Family-Notifier:latest
