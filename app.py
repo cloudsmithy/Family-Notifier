@@ -17,7 +17,7 @@ AUTH_URI       = os.getenv("LAZYCAT_AUTH_OIDC_AUTH_URI")
 TOKEN_URI      = os.getenv("LAZYCAT_AUTH_OIDC_TOKEN_URI")
 USERINFO_URI   = os.getenv("LAZYCAT_AUTH_OIDC_USERINFO_URI")
 JWKS_URI       = os.getenv("OIDC_JWKS_URI", f"https://{LAZYCAT_BOX_DOMAIN}/sys/oauth/keys")
-REDIRECT_URI   = os.getenv("OIDC_REDIRECT_URI", f"https://{LAZYCAT_APP_DOMAIN}/callback")
+REDIRECT_URI   = os.getenv("OIDC_REDIRECT_URI", f"https://{LAZYCAT_APP_DOMAIN}/oidc/callback")
 
 required = [CLIENT_ID, CLIENT_SECRET, AUTH_URI, TOKEN_URI, USERINFO_URI, JWKS_URI, REDIRECT_URI]
 oidc_configured = all(required)
