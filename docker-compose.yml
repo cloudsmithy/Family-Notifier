@@ -4,9 +4,9 @@ services:
   web:
     build: .
     ports:
-      - "5001:5001"
+      - "5005:5000"
     volumes:
-      - ./instance:/home/appuser/app/instance
+      - ./instance:/app/instance
     environment:
       # --- Flask Secret Key ---
       # IMPORTANT: Change this in a production environment!

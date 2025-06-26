@@ -29,7 +29,7 @@ app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=3650)
 
 # Ensure the instance folder exists
 try:
-    os.makedirs(app.instance_path)
+    os.makedirs(app.instance_path,exist_ok=True)
 except OSError:
     pass
 
@@ -263,4 +263,4 @@ def audit_log():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5001, host="0.0.0.0")
