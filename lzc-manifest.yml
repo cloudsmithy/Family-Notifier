@@ -1,0 +1,21 @@
+lzc-sdk-version: 0.1
+name: 家庭任务通知器
+package: xu.deploy.family-notifier
+version: 0.0.2
+description: 家庭任务通知器，集成了OIDC和普通用户一起管理
+license: https://choosealicense.com/licenses/mit/
+homepage:
+author: xu
+application:
+  subdomain: family-notifier
+  oidc_redirect_path: /oidc/callback
+  routes:
+    - /=exec://5005,./lzcapp/pkg/content/run.sh
+
+  environment:
+    - LAZYCAT_AUTH_OIDC_CLIENT_ID=${LAZYCAT_AUTH_OIDC_CLIENT_ID}
+    - LAZYCAT_AUTH_OIDC_CLIENT_SECRET=${LAZYCAT_AUTH_OIDC_CLIENT_SECRET}
+    - LAZYCAT_AUTH_OIDC_AUTH_URI=${LAZYCAT_AUTH_OIDC_AUTH_URI}
+    - LAZYCAT_AUTH_OIDC_TOKEN_URI=${LAZYCAT_AUTH_OIDC_TOKEN_URI}
+    - LAZYCAT_AUTH_OIDC_USERINFO_URI=${LAZYCAT_AUTH_OIDC_USERINFO_URI}
+    - LAZYCAT_AUTH_OIDC_ISSUER_URI=${LAZYCAT_AUTH_OIDC_ISSUER_URI}
